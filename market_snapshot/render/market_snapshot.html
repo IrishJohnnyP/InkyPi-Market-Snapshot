@@ -16,7 +16,7 @@ INDICES        PRICE        CHG        % CHG      52W HI      52W LO
 {% for item in market.indices -%}
 {{ "%-14s" | format(item.symbol) }}
 {{ "%12s" | format(item.price) }}
-{{ "%10s" | format(("%+g"|format(item.change)) if item.is_up else ("%g"|format(item.change))) }}
+{{ "%10s" | format(item.change) }}
 {{ "%10s" | format(item.change_pct ~ "%") }}
 {{ "%12s" | format(item.raw.fiftyTwoWeekHigh) }}
 {{ "%12s" | format(item.raw.fiftyTwoWeekLow) }}
@@ -26,7 +26,7 @@ STOCKS         PRICE        CHG        % CHG      52W HI      52W LO
 {% for item in market.stocks -%}
 {{ "%-14s" | format(item.symbol) }}
 {{ "%12s" | format(item.price) }}
-{{ "%10s" | format(("%+g"|format(item.change)) if item.is_up else ("%g"|format(item.change))) }}
+{{ "%10s" | format(item.change) }}
 {{ "%10s" | format(item.change_pct ~ "%") }}
 {{ "%12s" | format(item.raw.fiftyTwoWeekHigh) }}
 {{ "%12s" | format(item.raw.fiftyTwoWeekLow) }}
@@ -36,7 +36,7 @@ COMMODITIES    PRICE        CHG        % CHG      52W HI      52W LO
 {% for item in market.commodities -%}
 {{ "%-14s" | format(item.symbol) }}
 {{ "%12s" | format(item.price) }}
-{{ "%10s" | format(("%+g"|format(item.change)) if item.is_up else ("%g"|format(item.change))) }}
+{{ "%10s" | format(item.change) }}
 {{ "%10s" | format(item.change_pct ~ "%") }}
 {{ "%12s" | format(item.raw.fiftyTwoWeekHigh) }}
 {{ "%12s" | format(item.raw.fiftyTwoWeekLow) }}
