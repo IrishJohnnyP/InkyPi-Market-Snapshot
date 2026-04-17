@@ -15,7 +15,8 @@ class MarketSnapshot(BasePlugin):
         if device_config.get_config("orientation") == "vertical":
             dimensions = dimensions[::-1]
 
-        data = self.get_data() or {}
+        # ✅ CORRECT InkyPi API: cached data populated by fetch_data()
+        data = self.get_cached_data() or {}
 
         template_params = {
             "indices": data.get("indices", []),
