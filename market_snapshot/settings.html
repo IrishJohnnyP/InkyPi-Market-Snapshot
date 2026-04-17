@@ -7,10 +7,28 @@
     </select>
 </div>
 
+<div class="form-group">
+    <label for="symbols" class="form-label">Symbols</label>
+    <input
+        type="text"
+        id="symbols"
+        name="symbols"
+        class="form-input"
+        placeholder="^DJI,^GSPC,^IXIC | CME,MRX | BTC-USD,GC=F"
+    />
+    <small class="form-help">
+        Comma‑separated. Use <code>|</code> to separate sections (indices | stocks | commodities).
+    </small>
+</div>
+
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         if (loadPluginSettings) {
-            document.getElementById('font_size').value = pluginSettings.font_size || 'normal';
+            document.getElementById('font_size').value =
+                pluginSettings.font_size || 'normal';
+
+            document.getElementById('symbols').value =
+                pluginSettings.symbols || '';
         }
     });
 </script>
