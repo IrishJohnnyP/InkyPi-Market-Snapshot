@@ -7,41 +7,41 @@
   <div class="header">
     <div class="title">Market Snapshot</div>
     {% if market.last_updated %}
-      <div class="subtitle">Updated {{ market.last_updated }}</div>
+      <div class="subtitle">Updated: {{ market.last_updated }}</div>
     {% endif %}
   </div>
 
-  {% macro section(title, items) %}
-  {% if items %}
-  <div class="section">
-    <div class="section-title">{{ title }}</div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Symbol</th>
-          <th>Price</th>
-          <th>Chg</th>
-          <th>%</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for item in items %}
-        <tr class="{% if item.is_up %}positive{% else %}negative{% endif %}">
-          <td>{{ item.symbol }}</td>
-          <td>{{ item.price }}</td>
-          <td>{{ item.change }}</td>
-          <td>{{ item.change_pct }}%</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
-  {% endif %}
-  {% endmacro %}
+  <pre class="market-grid">
+INDICES        PRICE        CHG        % CHG      52W HI      52W LO
+{% for item in market.indices -%}
+{{ "%-14s" | format(item.symbol) }}
+{{ "%12s" | format(item.price) }}
+{{ "%10s" | format(("%+g"|format(item.change)) if item.is_up else ("%g"|format(item.change))) }}
+{{ "%10s" | format(item.change_pct ~ "%") }}
+{{ "%12s" | format(item.raw.fiftyTwoWeekHigh) }}
+{{ "%12s" | format(item.raw.fiftyTwoWeekLow) }}
+{% endfor %}
 
-  {{ section("INDICES", market.indices) }}
-  {{ section("STOCKS", market.stocks) }}
-  {{ section("COMMODITIES / CRYPTO", market.commodities) }}
+STOCKS         PRICE        CHG        % CHG      52W HI      52W LO
+{% for item in market.stocks -%}
+{{ "%-14s" | format(item.symbol) }}
+{{ "%12s" | format(item.price) }}
+{{ "%10s" | format(("%+g"|format(item.change)) if item.is_up else ("%g"|format(item.change))) }}
+{{ "%10s" | format(item.change_pct ~ "%") }}
+{{ "%12s" | format(item.raw.fiftyTwoWeekHigh) }}
+{{ "%12s" | format(item.raw.fiftyTwoWeekLow) }}
+{% endfor %}
+
+COMMODITIES    PRICE        CHG        % CHG      52W HI      52W LO
+{% for item in market.commodities -%}
+{{ "%-14s" | format(item.symbol) }}
+{{ "%12s" | format(item.price) }}
+{{ "%10s" | format(("%+g"|format(item.change)) if item.is_up else ("%g"|format(item.change))) }}
+{{ "%10s" | format(item.change_pct ~ "%") }}
+{{ "%12s" | format(item.raw.fiftyTwoWeekHigh) }}
+{{ "%12s" | format(item.raw.fiftyTwoWeekLow) }}
+{% endfor %}
+  </pre>
 
 </div>
 
