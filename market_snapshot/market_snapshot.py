@@ -1,11 +1,11 @@
 from plugins.base_plugin.base_plugin import BasePlugin
 
-
 class MarketSnapshot(BasePlugin):
 
     def generate_settings_template(self):
         params = super().generate_settings_template()
         params["style_settings"] = True
+        params["settings"] = {}  # ✅ explicitly define settings for settings.html
         return params
 
     def generate_image(self, settings, device_config):
@@ -17,7 +17,5 @@ class MarketSnapshot(BasePlugin):
             dimensions,
             "market_snapshot.html",
             "market_snapshot.css",
-            {
-                "plugin_settings": settings  # ✅ styles only
-            }
+            {}
         )
