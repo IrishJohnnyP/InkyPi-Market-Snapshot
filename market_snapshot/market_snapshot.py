@@ -7,11 +7,6 @@ logger = logging.getLogger(__name__)
 
 ZENQUOTES_URL = "https://zenquotes.io/api/random"
 
-MARKET_SNAPSHOT_URL = (
-    "https://yahoo-finance-proxy.pietrowicz.workers.dev/"
-    "?symbols=^DJI,^GSPC,^IXIC,^VIX|CME,MRX|BTC-USD,GC=F,CL=F"
-)
-
 FALLBACK_QUOTES = [
     {"q": "The only way to do great work is to love what you do.", "a": "Steve Jobs"},
     {"q": "In the middle of difficulty lies opportunity.", "a": "Albert Einstein"},
@@ -42,9 +37,6 @@ class MarketSnapshot(BasePlugin):
         dimensions = device_config.get_resolution()
         if device_config.get_config("orientation") == "vertical":
             dimensions = dimensions[::-1]
-
-        # ✅ NEW: fetch market data, but DO NOT use it yet
-        self._fetch_market_snapshot()
 
         font_size = settings.get("font_size", "normal")
 
@@ -77,15 +69,3 @@ class MarketSnapshot(BasePlugin):
             logger.error("ZenQuotes fetch failed: %s", e)
 
         return random.choice(FALLBACK_QUOTES)
-
-    # ✅ NEW, SIDE‑EFFECT‑ONLY
-    def _fetch_market_snapshot(self):
-        session = get_http_session()
-        try:
-            resp = session.get(MARKET_SNAPSHOT_URL, timeout=15)
-            resp.raise_for_status()
-            # Data is intentionally ignored for now
-            return resp.json()
-        except Exception as e:
-            logger.error("MarketSnapshot fetch failed: %s", e)
-            return None
