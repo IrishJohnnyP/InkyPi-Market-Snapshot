@@ -13,33 +13,36 @@
 
   <pre class="market-grid">
 INDICES        PRICE        CHG        % CHG      52W HI      52W LO
-{% for item in market.indices -%}
-{{ "%-14s" | format(item.symbol) }}
-{{ "%12s" | format(item.price) }}
-{{ "%10s" | format(item.change) }}
-{{ "%10s" | format(item.change_pct ~ "%") }}
-{{ "%12s" | format(item.raw.fiftyTwoWeekHigh) }}
-{{ "%12s" | format(item.raw.fiftyTwoWeekLow) }}
+{% for item in market.indices %}
+{{ "%-14s" | format(item.symbol)
+ ~ "%12s" | format(item.price)
+ ~ "%10s" | format(item.change)
+ ~ "%10s" | format(item.change_pct ~ "%")
+ ~ "%12s" | format(item.raw.fiftyTwoWeekHigh)
+ ~ "%12s" | format(item.raw.fiftyTwoWeekLow)
+}}
 {% endfor %}
 
 STOCKS         PRICE        CHG        % CHG      52W HI      52W LO
-{% for item in market.stocks -%}
-{{ "%-14s" | format(item.symbol) }}
-{{ "%12s" | format(item.price) }}
-{{ "%10s" | format(item.change) }}
-{{ "%10s" | format(item.change_pct ~ "%") }}
-{{ "%12s" | format(item.raw.fiftyTwoWeekHigh) }}
-{{ "%12s" | format(item.raw.fiftyTwoWeekLow) }}
+{% for item in market.stocks %}
+{{ "%-14s" | format(item.symbol)
+ ~ "%12s" | format(item.price)
+ ~ "%10s" | format(item.change)
+ ~ "%10s" | format(item.change_pct ~ "%")
+ ~ "%12s" | format(item.raw.fiftyTwoWeekHigh)
+ ~ "%12s" | format(item.raw.fiftyTwoWeekLow)
+}}
 {% endfor %}
 
 COMMODITIES    PRICE        CHG        % CHG      52W HI      52W LO
-{% for item in market.commodities -%}
-{{ "%-14s" | format(item.symbol) }}
-{{ "%12s" | format(item.price) }}
-{{ "%10s" | format(item.change) }}
-{{ "%10s" | format(item.change_pct ~ "%") }}
-{{ "%12s" | format(item.raw.fiftyTwoWeekHigh) }}
-{{ "%12s" | format(item.raw.fiftyTwoWeekLow) }}
+{% for item in market.commodities %}
+{{ "%-14s" | format(item.symbol)
+ ~ "%12s" | format(item.price)
+ ~ "%10s" | format(item.change)
+ ~ "%10s" | format(item.change_pct ~ "%")
+ ~ "%12s" | format(item.raw.fiftyTwoWeekHigh)
+ ~ "%12s" | format(item.raw.fiftyTwoWeekLow)
+}}
 {% endfor %}
   </pre>
 
