@@ -6,44 +6,42 @@
 
   <div class="header">
     <div class="title">Market Snapshot</div>
+    {% if market.last_updated %}
+      <div class="subtitle">Updated {{ market.last_updated }}</div>
+    {% endif %}
   </div>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Symbol</th>
-        <th>Price</th>
-        <th>Change</th>
-        <th>%</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>^DJI</td>
-        <td>—</td>
-        <td>—</td>
-        <td>—</td>
-      </tr>
-      <tr>
-        <td>^GSPC</td>
-        <td>—</td>
-        <td>—</td>
-        <td>—</td>
-      </tr>
-      <tr>
-        <td>^IXIC</td>
-        <td>—</td>
-        <td>—</td>
-        <td>—</td>
-      </tr>
-      <tr>
-        <td>^VIX</td>
-        <td>—</td>
-        <td>—</td>
-        <td>—</td>
-      </tr>
-    </tbody>
-  </table>
+  {% macro section(title, items) %}
+  {% if items %}
+  <div class="section">
+    <div class="section-title">{{ title }}</div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Symbol</th>
+          <th>Price</th>
+          <th>Chg</th>
+          <th>%</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+        <tr class="{% if item.is_up %}positive{% else %}negative{% endif %}">
+          <td>{{ item.symbol }}</td>
+          <td>{{ item.price }}</td>
+          <td>{{ item.change }}</td>
+          <td>{{ item.change_pct }}%</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+  {% endmacro %}
+
+  {{ section("INDICES", market.indices) }}
+  {{ section("STOCKS", market.stocks) }}
+  {{ section("COMMODITIES / CRYPTO", market.commodities) }}
 
 </div>
 
