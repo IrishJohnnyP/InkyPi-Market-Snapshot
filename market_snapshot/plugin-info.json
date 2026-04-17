@@ -1,6 +1,6 @@
 {
-    "display_name": "Daily Quote",
-    "id": "daily_quote",
-    "class": "DailyQuote",
-    "repository": "https://github.com/IrishJohnnyP/InkyPi-Daily-Quote"
+    "display_name": "Market Snapshot",
+    "id": "market_snapshot",
+    "class": "MarketSnapshot",
+    "repository": "https://github.com/IrishJohnnyP/InkyPi-Market-Snapshot"
 }
