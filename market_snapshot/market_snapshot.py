@@ -55,7 +55,7 @@ class MarketSnapshot(BasePlugin):
             resp = session.get(ZENQUOTES_URL, timeout=15)
             resp.raise_for_status()
             data = resp.json()
-            if data and isinstance(data, list) and "q" in data[0]:
+            if data and isinstance(data, list) and "q" in data:
                 return data[0]
         except Exception as e:
             logger.error("ZenQuotes fetch failed: %s", e)
