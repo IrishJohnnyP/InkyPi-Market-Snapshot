@@ -1,30 +1,94 @@
-.market-snapshot {
+/* =========================
+   GLOBAL
+   ========================= */
+.market-view,
+.market-view * {
   font-family: "Roboto", Arial, sans-serif;
+  color: #000;
 }
 
-.market-grid {
-  font-family: "Roboto Mono", "Roboto", monospace;
-  font-size: 14px;
-  line-height: 1.25;
-  margin: 0;
-  padding: 0;
-  white-space: pre;
-  text-align: left;
+/* =========================
+   HEADER
+   ========================= */
+.market-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
 }
 
-.market-grid .section-title {
-  display: block;
-  margin-top: 0.75em;
-  margin-bottom: 0.3em;
-  font-weight: 700;
-  text-decoration: underline;
-}
-
-.market-snapshot .header .title {
+.title-text {
+  font-size: 32px;
   font-weight: 700;
 }
 
-.market-snapshot .header .subtitle {
-  font-size: 12px;
-  margin-top: 0.2em;
+.updated-text {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* =========================
+   GRID TABLE
+   ========================= */
+.section-header,
+.row {
+  display: grid;
+  grid-template-columns:
+    2.5fr   /* SYMBOL */
+    1fr     /* PRICE */
+    1fr     /* CHG */
+    1fr     /* % CHG */
+    1.2fr   /* 52W HI */
+    1.2fr;  /* 52W LO */
+  column-gap: 15px;
+  align-items: center;
+  width: 100%;
+}
+
+.section-header {
+  margin-top: 6px;
+  padding: 6px 0;
+  border-top: 3px solid #000;
+  border-bottom: 3px solid #000;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.row {
+  height: 28px;
+  font-size: 18px;
+  border-bottom: 1px solid #000;
+}
+
+.no-border {
+  border-bottom: 0;
+}
+
+.section-spacer {
+  margin-bottom: 12px;
+}
+
+/* =========================
+   CELL STYLES
+   ========================= */
+.symbol {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.col-right {
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* =========================
+   COLORS
+   ========================= */
+.up {
+  color: #007a33;
+}
+
+.down {
+  color: #c00000;
 }
