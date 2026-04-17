@@ -38,10 +38,8 @@ class MarketSnapshot(BasePlugin):
         if device_config.get_config("orientation") == "vertical":
             dimensions = dimensions[::-1]
 
-        quote_data = random.choice(FALLBACK_QUOTES)
-
         template_params = {
-            "plugin_settings": settings,  # ✅ REQUIRED
+            "plugin_settings": settings,
         }
 
         return self.render_image(
@@ -50,3 +48,16 @@ class MarketSnapshot(BasePlugin):
             "market_snapshot.css",
             template_params
         )
+
+    def _fetch_quote(self):
+        session = get_http_session()
+        try:
+            resp = session.get(ZENQUOTES_URL, timeout=15)
+            resp.raise_for_status()
+            data = resp.json()
+            if data and isinstance(data, list) and "q" in data[0]:
+                return data[0]
+        except Exception as e:
+            logger.error("ZenQuotes fetch failed: %s", e)
+
+        return random.choice(FALLBACK_QUOTES)
