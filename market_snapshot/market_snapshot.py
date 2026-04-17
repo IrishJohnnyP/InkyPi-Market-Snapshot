@@ -50,7 +50,10 @@ class MarketSnapshot(BasePlugin):
         }
 
         image = self.render_image(
-            dimensions, "market_snapshot.html", "market_snapshot.css", template_params
+            dimensions,
+            "market_snapshot.html",
+            "market_snapshot.css",
+            template_params
         )
         return image
 
@@ -66,4 +69,3 @@ class MarketSnapshot(BasePlugin):
             logger.error("ZenQuotes fetch failed: %s", e)
 
         return random.choice(FALLBACK_QUOTES)
-``
