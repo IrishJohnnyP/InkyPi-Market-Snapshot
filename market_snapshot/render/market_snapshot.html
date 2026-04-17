@@ -7,12 +7,21 @@
     {% endif %}
   </div>
 
-  {% if indices %}
+  {% macro section(title, items) %}
+  {% if items %}
   <div class="section">
-    <div class="section-title">INDICES</div>
+    <div class="section-title">{{ title }}</div>
     <table class="table">
+      <thead>
+        <tr>
+          <th>Symbol</th>
+          <th>Price</th>
+          <th>Chg</th>
+          <th>%</th>
+        </tr>
+      </thead>
       <tbody>
-        {% for item in indices %}
+        {% for item in items %}
         <tr class="{% if item.is_up %}positive{% else %}negative{% endif %}">
           <td>{{ item.symbol }}</td>
           <td>{{ item.price }}</td>
@@ -24,41 +33,10 @@
     </table>
   </div>
   {% endif %}
+  {% endmacro %}
 
-  {% if stocks %}
-  <div class="section">
-    <div class="section-title">STOCKS</div>
-    <table class="table">
-      <tbody>
-        {% for item in stocks %}
-        <tr class="{% if item.is_up %}positive{% else %}negative{% endif %}">
-          <td>{{ item.symbol }}</td>
-          <td>{{ item.price }}</td>
-          <td>{{ item.change }}</td>
-          <td>{{ item.change_pct }}%</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
-  {% endif %}
-
-  {% if commodities %}
-  <div class="section">
-    <div class="section-title">COMMODITIES</div>
-    <table class="table">
-      <tbody>
-        {% for item in commodities %}
-        <tr class="{% if item.is_up %}positive{% else %}negative{% endif %}">
-          <td>{{ item.symbol }}</td>
-          <td>{{ item.price }}</td>
-          <td>{{ item.change }}</td>
-          <td>{{ item.change_pct }}%</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
-  {% endif %}
+  {{ section("INDICES", indices) }}
+  {{ section("STOCKS", stocks) }}
+  {{ section("COMMODITIES", commodities) }}
 
 </div>
