@@ -17,16 +17,22 @@ class MarketSnapshot(BasePlugin):
         if device_config.get_config("orientation") == "vertical":
             dimensions = dimensions[::-1]
 
-        # ✅ EXACT DailyQuote pattern: no dependency on custom settings
-        symbols = "^DJI,^GSPC,^IXIC,^VIX|CME,MRX|BTC-USD,GC=F,CL=F"
-        data = {}
+        # EXACT DailyQuote pattern: inline fetch, no assumptions
+        url = (
+            "https://yahoo-finance-proxy.pietrowicz.workers.dev/"
+            "?symbols=^DJI,^GSPC,^IXIC,^VIX|CME,MRX|BTC-USD,GC=F,CL=F"
+        )
+
+        data = {
+            "indices": [],
+            "stocks": [],
+            "commodities": [],
+            "last_updated": None,
+        }
 
         try:
             session = get_http_session()
-            resp = session.get(
-                f"https://yahoo-finance-proxy.pietrowicz.workers.dev/?symbols={symbols}",
-                timeout=15,
-            )
+            resp = session.get(url, timeout=15)
             resp.raise_for_status()
             data = resp.json()
         except Exception as e:
