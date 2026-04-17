@@ -14,39 +14,51 @@
   <pre class="market-grid">
 
 <span class="section-title">INDICES</span>
-<span class="header-row">SYMBOL         PRICE        CHG        % CHG      52W HI      52W LO</span>
+{{ "%-10s" | format("SYMBOL")
+ ~ "%14s" | format("PRICE")
+ ~ "%14s" | format("CHG")
+ ~ "%10s" | format("% CHG")
+ ~ "%14s" | format("52W HI")
+ ~ "%14s" | format("52W LO") }}
 {% for item in market.indices %}
-{{ "%-14s" | format(item.symbol)
- ~ "%12s" | format(item.price)
- ~ "%10s" | format(item.change)
- ~ "%10s" | format(item.change_pct ~ "%")
- ~ "%12s" | format(item.raw.fiftyTwoWeekHigh)
- ~ "%12s" | format(item.raw.fiftyTwoWeekLow)
-}}
+{{ "%-10s" | format(item.symbol)
+ ~ "%14s" | format("{:,.2f}".format(item.price | float))
+ ~ "%14s" | format("{:+,.2f}".format(item.change | float))
+ ~ "%10s" | format("{:+.2f}%".format(item.change_pct | float))
+ ~ "%14s" | format("{:,.2f}".format(item.raw.fiftyTwoWeekHigh | float))
+ ~ "%14s" | format("{:,.2f}".format(item.raw.fiftyTwoWeekLow | float)) }}
 {% endfor %}
 
 <span class="section-title">STOCKS</span>
-<span class="header-row">SYMBOL         PRICE        CHG        % CHG      52W HI      52W LO</span>
+{{ "%-10s" | format("SYMBOL")
+ ~ "%14s" | format("PRICE")
+ ~ "%14s" | format("CHG")
+ ~ "%10s" | format("% CHG")
+ ~ "%14s" | format("52W HI")
+ ~ "%14s" | format("52W LO") }}
 {% for item in market.stocks %}
-{{ "%-14s" | format(item.symbol)
- ~ "%12s" | format(item.price)
- ~ "%10s" | format(item.change)
- ~ "%10s" | format(item.change_pct ~ "%")
- ~ "%12s" | format(item.raw.fiftyTwoWeekHigh)
- ~ "%12s" | format(item.raw.fiftyTwoWeekLow)
-}}
+{{ "%-10s" | format(item.symbol)
+ ~ "%14s" | format("{:,.2f}".format(item.price | float))
+ ~ "%14s" | format("{:+,.2f}".format(item.change | float))
+ ~ "%10s" | format("{:+.2f}%".format(item.change_pct | float))
+ ~ "%14s" | format("{:,.2f}".format(item.raw.fiftyTwoWeekHigh | float))
+ ~ "%14s" | format("{:,.2f}".format(item.raw.fiftyTwoWeekLow | float)) }}
 {% endfor %}
 
 <span class="section-title">COMMODITIES</span>
-<span class="header-row">SYMBOL         PRICE        CHG        % CHG      52W HI      52W LO</span>
+{{ "%-10s" | format("SYMBOL")
+ ~ "%14s" | format("PRICE")
+ ~ "%14s" | format("CHG")
+ ~ "%10s" | format("% CHG")
+ ~ "%14s" | format("52W HI")
+ ~ "%14s" | format("52W LO") }}
 {% for item in market.commodities %}
-{{ "%-14s" | format(item.symbol)
- ~ "%12s" | format(item.price)
- ~ "%10s" | format(item.change)
- ~ "%10s" | format(item.change_pct ~ "%")
- ~ "%12s" | format(item.raw.fiftyTwoWeekHigh)
- ~ "%12s" | format(item.raw.fiftyTwoWeekLow)
-}}
+{{ "%-10s" | format(item.symbol)
+ ~ "%14s" | format("{:,.2f}".format(item.price | float))
+ ~ "%14s" | format("{:+,.2f}".format(item.change | float))
+ ~ "%10s" | format("{:+.2f}%".format(item.change_pct | float))
+ ~ "%14s" | format("{:,.2f}".format(item.raw.fiftyTwoWeekHigh | float))
+ ~ "%14s" | format("{:,.2f}".format(item.raw.fiftyTwoWeekLow | float)) }}
 {% endfor %}
 
   </pre>
