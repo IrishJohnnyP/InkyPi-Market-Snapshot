@@ -6,6 +6,7 @@ class MarketSnapshot(BasePlugin):
     def generate_settings_template(self):
         params = super().generate_settings_template()
         params["style_settings"] = True
+        params["plugin_settings"] = self.settings  # ✅ REQUIRED
         return params
 
     def generate_image(self, settings, device_config):
