@@ -1,16 +1,14 @@
-<div class="form-group">
-    <label for="font_size" class="form-label">Font Size</label>
-    <select id="font_size" name="font_size" class="form-input">
-        <option value="small">Small</option>
-        <option value="normal">Normal</option>
-        <option value="large">Large</option>
-    </select>
+<div class="setting">
+  <label for="symbols">Symbols</label>
+  <input
+    type="text"
+    id="symbols"
+    name="symbols"
+    value="{{ settings.symbols }}"
+  />
+  <p class="help">
+    Format: Indices|Stocks|Commodities<br>
+    Example:<br>
+    <code>^DJI,^GSPC,^IXIC,^VIX|CME,MRX|BTC-USD,GC=F,CL=F</code>
+  </p>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        if (loadPluginSettings) {
-            document.getElementById('font_size').value = pluginSettings.font_size || 'normal';
-        }
-    });
-</script>
