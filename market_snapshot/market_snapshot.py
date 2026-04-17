@@ -1,14 +1,9 @@
 from plugins.base import PluginBase
-from plugins.decorators import plugin
 
 
-@plugin
-class MarketSnapshotPlugin(PluginBase):
-    NAME = "market_snapshot"
-    TEMPLATE = "market_snapshot.html"
-
-    def get_data(self):
-        return super().get_data()
+class MarketSnapshot(PluginBase):
+    def get_template(self):
+        return "market_snapshot.html"
 
     def get_request_url(self):
         symbols = self.get_setting("symbols")
@@ -18,7 +13,7 @@ class MarketSnapshotPlugin(PluginBase):
         )
 
     def get_template_context(self):
-        data = self.get_data() or {}
+        data = self.data or {}
 
         return {
             "indices": data.get("indices", []),
