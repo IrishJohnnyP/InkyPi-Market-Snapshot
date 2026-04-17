@@ -1,46 +1,14 @@
-<div class="module">
-
-  <div class="header">
-    <div class="title">Market Snapshot</div>
-    {% if last_updated %}
-      <div class="subtitle">Updated: {{ last_updated }}</div>
-    {% endif %}
-  </div>
-
-  {% macro market_table(title, items) %}
-  {% if items and items|length > 0 %}
-  <div class="section">
-    <div class="section-title">{{ title }}</div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Symbol</th>
-          <th>Price</th>
-          <th>Chg</th>
-          <th>%</th>
-          <th>52W Hi</th>
-          <th>52W Lo</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for item in items %}
-        <tr class="{% if item.is_up %}positive{% else %}negative{% endif %}">
-          <td>{{ item.symbol }}</td>
-          <td>{{ item.price }}</td>
-          <td>{% if item.is_up %}+{% endif %}{{ item.change }}</td>
-          <td>{% if item.is_up %}+{% endif %}{{ item.change_pct }}%</td>
-          <td>{{ item.raw.fiftyTwoWeekHigh }}</td>
-          <td>{{ item.raw.fiftyTwoWeekLow }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
-  {% endif %}
-  {% endmacro %}
-
-  {{ market_table("INDICES", indices) }}
-  {{ market_table("STOCKS", stocks) }}
-  {{ market_table("COMMODITIES", commodities) }}
-
+<div class="setting">
+  <label for="symbols">Symbols</label>
+  <input
+    type="text"
+    id="symbols"
+    name="symbols"
+    value="{{ settings.symbols }}"
+  />
+  <p class="help">
+    Format: Indices|Stocks|Commodities<br>
+    Example:<br>
+    <code>^DJI,^GSPC,^IXIC,^VIX|CME,MRX|BTC-USD,GC=F,CL=F</code>
+  </p>
 </div>
