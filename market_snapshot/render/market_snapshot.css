@@ -1,15 +1,19 @@
-/* =========================
+/* =========================================================
    GLOBAL
-   ========================= */
+   Target: Pimoroni Inky Color Spectra 6 (800 x 480)
+   ========================================================= */
+
 .market-view,
 .market-view * {
   font-family: "Roboto", Arial, sans-serif;
   color: #000;
+  box-sizing: border-box;
 }
 
-/* =========================
+/* =========================================================
    HEADER
-   ========================= */
+   ========================================================= */
+
 .market-header {
   display: flex;
   justify-content: space-between;
@@ -27,23 +31,32 @@
   font-weight: 600;
 }
 
-/* =========================
-   GRID TABLE
-   ========================= */
+/* =========================================================
+   GRID TABLE LAYOUT
+   Optimized for 800px width
+   ========================================================= */
+
 .section-header,
 .row {
   display: grid;
+
+  /* Column widths tuned for Spectra 6 */
   grid-template-columns:
-    2.5fr   /* SYMBOL */
-    1fr     /* PRICE */
-    1fr     /* CHG */
-    1fr     /* % CHG */
-    1.2fr   /* 52W HI */
-    1.2fr;  /* 52W LO */
-  column-gap: 15px;
+    220px  /* SYMBOL */
+    90px   /* PRICE */
+    90px   /* CHG */
+    80px   /* % CHG */
+    100px  /* 52W HI */
+    100px; /* 52W LO */
+
+  column-gap: 10px;
   align-items: center;
   width: 100%;
 }
+
+/* =========================================================
+   SECTION HEADERS
+   ========================================================= */
 
 .section-header {
   margin-top: 6px;
@@ -55,6 +68,14 @@
   letter-spacing: 0.05em;
 }
 
+.section-spacer {
+  margin-bottom: 14px;
+}
+
+/* =========================================================
+   ROWS
+   ========================================================= */
+
 .row {
   height: 28px;
   font-size: 18px;
@@ -65,30 +86,36 @@
   border-bottom: 0;
 }
 
-.section-spacer {
-  margin-bottom: 12px;
-}
-
-/* =========================
+/* =========================================================
    CELL STYLES
-   ========================= */
+   ========================================================= */
+
+/* SYMBOL — ellipsis-safe */
 .symbol {
   font-weight: 700;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  /* Critical for ellipsis in CSS Grid */
+  min-width: 0;
 }
 
+/* Right-aligned numeric columns */
 .col-right {
   text-align: right;
   white-space: nowrap;
 }
 
-/* =========================
-   COLORS
-   ========================= */
+/* =========================================================
+   COLOR SEMANTICS
+   Inky-safe color palette
+   ========================================================= */
+
 .up {
-  color: #007a33;
+  color: #007a33; /* dark green */
 }
 
 .down {
-  color: #c00000;
+  color: #c00000; /* dark red */
 }
