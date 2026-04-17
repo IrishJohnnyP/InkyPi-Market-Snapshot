@@ -1,11 +1,44 @@
-{% extends "plugin.html" %}
+<div class="module">
 
-{% block content %}
+  <div class="header">
+    <div class="title">Market Snapshot</div>
+  </div>
 
-<div class="quote-container font-{{ font_size }}">
-    <div class="quote-mark opening">&ldquo;</div>
-    <div class="quote-text">{{ quote }}</div>
-    <div class="quote-author">&mdash; {{ author }}</div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Symbol</th>
+        <th>Price</th>
+        <th>Change</th>
+        <th>%</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>^DJI</td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>^GSPC</td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>^IXIC</td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>^VIX</td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+
 </div>
-
-{% endblock %}
