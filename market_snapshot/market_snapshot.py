@@ -1,23 +1,52 @@
-from plugins.base import PluginBase
+<div class="module">
 
+  <div class="header">
+    <div class="title">Market Snapshot</div>
+    {% if last_updated %}
+      <div class="subtitle">Updated: {{ last_updated }}</div>
+    {% endif %}
+  </div>
 
-class MarketSnapshot(PluginBase):
-    def get_template(self):
-        return "market_snapshot.html"
+  {% macro market_table(title, items) %}
+    {% if items and items|length %}
+      <div class="section">
+        <div class="section-title">{{ title }}</div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Symbol</th>
+              <th>Price</th>
+              <th>Chg</th>
+              <th>%</th>
+              <th>52W Hi</th>
+              <th>52W Lo</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in items %}
+              <tr class="{% if item.is_up %}positive{% else %}negative{% endif %}">
+                <td>{{ item.symbol }}</td>
+                <td>{{ item.price | format_number }}</td>
+                <td>
+                  {% if item.is_up %}+{% endif %}
+                  {{ item.change | format_number }}
+                </td>
+                <td>
+                  {% if item.is_up %}+{% endif %}
+                  {{ item.change_pct }}%
+                </td>
+                <td>{{ item.raw.fiftyTwoWeekHigh | format_number }}</td>
+                <td>{{ item.raw.fiftyTwoWeekLow | format_number }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% endif %}
+  {% endmacro %}
 
-    def get_request_url(self):
-        symbols = self.get_setting("symbols")
-        return (
-            "https://yahoo-finance-proxy.pietrowicz.workers.dev/"
-            f"?symbols={symbols}"
-        )
+  {{ market_table("INDICES", indices) }}
+  {{ market_table("STOCKS", stocks) }}
+  {{ market_table("COMMODITIES", commodities) }}
 
-    def get_template_context(self):
-        data = self.data or {}
-
-        return {
-            "indices": data.get("indices", []),
-            "stocks": data.get("stocks", []),
-            "commodities": data.get("commodities", []),
-            "last_updated": data.get("last_updated"),
-        }
+</div>
