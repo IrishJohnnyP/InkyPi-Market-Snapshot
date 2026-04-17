@@ -1,6 +1,6 @@
 <div class="setting">
   <label for="font_size">Font Size</label>
-  <select id="font_size" name="font_size">
+  <select name="font_size" id="font_size">
     <option value="small" {% if settings.font_size == "small" %}selected{% endif %}>Small</option>
     <option value="normal" {% if settings.font_size == "normal" or not settings.font_size %}selected{% endif %}>Normal</option>
     <option value="large" {% if settings.font_size == "large" %}selected{% endif %}>Large</option>
