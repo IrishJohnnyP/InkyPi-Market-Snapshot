@@ -1,4 +1,3 @@
-# market_snapshot.py
 from plugins.base_plugin.base_plugin import BasePlugin
 from utils.http_client import get_http_session
 import logging
@@ -40,6 +39,7 @@ class MarketSnapshot(BasePlugin):
             dimensions = dimensions[::-1]
 
         font_size = settings.get("font_size", "normal")
+
         quote_data = self._fetch_quote()
 
         template_params = {
@@ -49,13 +49,12 @@ class MarketSnapshot(BasePlugin):
             "plugin_settings": settings,
         }
 
-        image = self.render_image(
+        return self.render_image(
             dimensions,
             "market_snapshot.html",
             "market_snapshot.css",
-            template_params,
+            template_params
         )
-        return image
 
     def _fetch_quote(self):
         session = get_http_session()
