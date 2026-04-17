@@ -26,7 +26,7 @@ FALLBACK_QUOTES = [
 ]
 
 
-class DailyQuote(BasePlugin):
+class MarkentSnapshot(BasePlugin):
 
     def generate_settings_template(self):
         template_params = super().generate_settings_template()
@@ -50,7 +50,7 @@ class DailyQuote(BasePlugin):
         }
 
         image = self.render_image(
-            dimensions, "daily_quote.html", "daily_quote.css", template_params
+            dimensions, "market_snapshot.html", "market_snapshot.css", template_params
         )
         return image
 
