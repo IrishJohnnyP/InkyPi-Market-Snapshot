@@ -17,20 +17,20 @@ class MarketSnapshot(BasePlugin):
         if device_config.get_config("orientation") == "vertical":
             dimensions = dimensions[::-1]
 
-        symbols = settings.get("symbols", "")
+        # ✅ EXACT DailyQuote pattern: no dependency on custom settings
+        symbols = "^DJI,^GSPC,^IXIC,^VIX|CME,MRX|BTC-USD,GC=F,CL=F"
         data = {}
 
-        if symbols:
-            try:
-                session = get_http_session()
-                resp = session.get(
-                    f"https://yahoo-finance-proxy.pietrowicz.workers.dev/?symbols={symbols}",
-                    timeout=15,
-                )
-                resp.raise_for_status()
-                data = resp.json()
-            except Exception as e:
-                logger.error("MarketSnapshot fetch failed: %s", e)
+        try:
+            session = get_http_session()
+            resp = session.get(
+                f"https://yahoo-finance-proxy.pietrowicz.workers.dev/?symbols={symbols}",
+                timeout=15,
+            )
+            resp.raise_for_status()
+            data = resp.json()
+        except Exception as e:
+            logger.error("MarketSnapshot fetch failed: %s", e)
 
         template_params = {
             "indices": data.get("indices", []),
