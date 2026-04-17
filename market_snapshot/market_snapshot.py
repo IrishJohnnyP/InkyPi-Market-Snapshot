@@ -21,13 +21,12 @@ class MarketSnapshot(BasePlugin):
         data = {}
 
         if symbols:
-            url = (
-                "https://yahoo-finance-proxy.pietrowicz.workers.dev/"
-                f"?symbols={symbols}"
-            )
             try:
                 session = get_http_session()
-                resp = session.get(url, timeout=15)
+                resp = session.get(
+                    f"https://yahoo-finance-proxy.pietrowicz.workers.dev/?symbols={symbols}",
+                    timeout=15,
+                )
                 resp.raise_for_status()
                 data = resp.json()
             except Exception as e:
@@ -45,7 +44,7 @@ class MarketSnapshot(BasePlugin):
             dimensions,
             "market_snapshot.html",
             "market_snapshot.css",
-            template_params
+            template_params,
         )
 
         return image
