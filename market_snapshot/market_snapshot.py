@@ -2,6 +2,9 @@ from plugins.base_plugin.base_plugin import BasePlugin
 from utils.http_client import get_http_session
 
 
+DEFAULT_SYMBOLS = "^DJI,^GSPC,^IXIC,^VIX|CME,MRX|BTC-USD,GC=F,CL=F"
+
+
 class MarketSnapshot(BasePlugin):
 
     def generate_settings_template(self):
@@ -9,10 +12,10 @@ class MarketSnapshot(BasePlugin):
         params["style_settings"] = True
         return params
 
-    def _fetch_market_data(self):
+    def _fetch_market_data(self, symbols):
         url = (
             "https://yahoo-finance-proxy.pietrowicz.workers.dev/"
-            "?symbols=^DJI,^GSPC,^IXIC,^VIX|CME,MRX|BTC-USD,GC=F,CL=F"
+            f"?symbols={symbols}"
         )
         session = get_http_session()
         response = session.get(url, timeout=15)
@@ -24,7 +27,10 @@ class MarketSnapshot(BasePlugin):
         if device_config.get_config("orientation") == "vertical":
             dimensions = dimensions[::-1]
 
-        market_data = self._fetch_market_data()
+        symbols = settings.get("symbols") or DEFAULT_SYMBOLS
+        symbols = symbols.replace(" ", "")  # sanitize user input
+
+        market_data = self._fetch_market_data(symbols)
 
         return self.render_image(
             dimensions,
