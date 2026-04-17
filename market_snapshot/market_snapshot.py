@@ -26,7 +26,7 @@ FALLBACK_QUOTES = [
 ]
 
 
-class MarkentSnapshot(BasePlugin):
+class MarketSnapshot(BasePlugin):
 
     def generate_settings_template(self):
         template_params = super().generate_settings_template()
