@@ -1,8 +1,8 @@
 <div class="setting">
   <label for="font_size">Font Size</label>
-  <select name="font_size" id="font_size">
-    <option value="small" {% if settings.font_size == "small" %}selected{% endif %}>Small</option>
-    <option value="normal" {% if settings.font_size == "normal" or not settings.font_size %}selected{% endif %}>Normal</option>
-    <option value="large" {% if settings.font_size == "large" %}selected{% endif %}>Large</option>
+  <select id="font_size" name="font_size">
+    <option value="small" {% if plugin_settings.font_size == "small" %}selected{% endif %}>Small</option>
+    <option value="normal" {% if plugin_settings.font_size == "normal" or not plugin_settings.font_size %}selected{% endif %}>Normal</option>
+    <option value="large" {% if plugin_settings.font_size == "large" %}selected{% endif %}>Large</option>
   </select>
 </div>
