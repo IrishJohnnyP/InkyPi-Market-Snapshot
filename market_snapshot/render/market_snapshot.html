@@ -2,66 +2,46 @@
 
 {% block content %}
 
-<div class="module market-snapshot">
+<div class="market-view">
 
-  <div class="header">
-    <div class="title">Market Snapshot</div>
+  <div class="market-header">
+    <span class="title-text">Market Snapshot</span>
     {% if market.last_updated %}
-      <div class="subtitle">Updated {{ market.last_updated }}</div>
+      <span class="updated-text">Updated: {{ market.last_updated }}</span>
     {% endif %}
   </div>
 
-  <pre class="market-grid">
+  {% macro section(title, items) %}
+  <div class="section-header">
+    <span class="symbol">{{ title }}</span>
+    <span class="col-right">PRICE</span>
+    <span class="col-right">CHG</span>
+    <span class="col-right">% CHG</span>
+    <span class="col-right">52W HI</span>
+    <span class="col-right">52W LO</span>
+  </div>
 
-<span class="section-title">INDICES</span>
-{{ "%-10s" | format("SYMBOL")
- ~ "%14s" | format("PRICE")
- ~ "%14s" | format("CHG")
- ~ "%10s" | format("% CHG")
- ~ "%14s" | format("52W HI")
- ~ "%14s" | format("52W LO") }}
-{% for item in market.indices %}
-{{ "%-10s" | format(item.symbol)
- ~ "%14s" | format("{:,.2f}".format(item.price | float))
- ~ "%14s" | format("{:+,.2f}".format(item.change | float))
- ~ "%10s" | format("{:+.2f}%".format(item.change_pct | float))
- ~ "%14s" | format("{:,.2f}".format(item.raw.fiftyTwoWeekHigh | float))
- ~ "%14s" | format("{:,.2f}".format(item.raw.fiftyTwoWeekLow | float)) }}
-{% endfor %}
+  {% for item in items %}
+  <div class="row {% if loop.last %}no-border{% endif %}">
+    <span class="symbol">{{ item.symbol }}</span>
+    <span class="col-right">{{ "{:,.2f}".format(item.price | float) }}</span>
+    <span class="col-right {% if item.is_up %}up{% else %}down{% endif %}">
+      {{ "{:+,.2f}".format(item.change | float) }}
+    </span>
+    <span class="col-right {% if item.is_up %}up{% else %}down{% endif %}">
+      {{ "{:+.2f}%".format(item.change_pct | float) }}
+    </span>
+    <span class="col-right">{{ "{:,.2f}".format(item.raw.fiftyTwoWeekHigh | float) }}</span>
+    <span class="col-right">{{ "{:,.2f}".format(item.raw.fiftyTwoWeekLow | float) }}</span>
+  </div>
+  {% endfor %}
 
-<span class="section-title">STOCKS</span>
-{{ "%-10s" | format("SYMBOL")
- ~ "%14s" | format("PRICE")
- ~ "%14s" | format("CHG")
- ~ "%10s" | format("% CHG")
- ~ "%14s" | format("52W HI")
- ~ "%14s" | format("52W LO") }}
-{% for item in market.stocks %}
-{{ "%-10s" | format(item.symbol)
- ~ "%14s" | format("{:,.2f}".format(item.price | float))
- ~ "%14s" | format("{:+,.2f}".format(item.change | float))
- ~ "%10s" | format("{:+.2f}%".format(item.change_pct | float))
- ~ "%14s" | format("{:,.2f}".format(item.raw.fiftyTwoWeekHigh | float))
- ~ "%14s" | format("{:,.2f}".format(item.raw.fiftyTwoWeekLow | float)) }}
-{% endfor %}
+  <div class="section-spacer"></div>
+  {% endmacro %}
 
-<span class="section-title">COMMODITIES</span>
-{{ "%-10s" | format("SYMBOL")
- ~ "%14s" | format("PRICE")
- ~ "%14s" | format("CHG")
- ~ "%10s" | format("% CHG")
- ~ "%14s" | format("52W HI")
- ~ "%14s" | format("52W LO") }}
-{% for item in market.commodities %}
-{{ "%-10s" | format(item.symbol)
- ~ "%14s" | format("{:,.2f}".format(item.price | float))
- ~ "%14s" | format("{:+,.2f}".format(item.change | float))
- ~ "%10s" | format("{:+.2f}%".format(item.change_pct | float))
- ~ "%14s" | format("{:,.2f}".format(item.raw.fiftyTwoWeekHigh | float))
- ~ "%14s" | format("{:,.2f}".format(item.raw.fiftyTwoWeekLow | float)) }}
-{% endfor %}
-
-  </pre>
+  {{ section("INDICES", market.indices) }}
+  {{ section("STOCKS", market.stocks) }}
+  {{ section("COMMODITIES", market.commodities) }}
 
 </div>
 
