@@ -134,22 +134,22 @@
 
 @media (min-width: 1400px) and (min-height: 1000px) {
   :root {
-    /* Typography */
-    --title-size: 60px;
-    --subtitle-size: 26px;
-    --row-font-size: 30px;
-    --row-height: 48px;
+    /* Typography – final polish */
+    --title-size: 64px;       /* was 60px */
+    --subtitle-size: 28px;    /* was 26px */
+    --row-font-size: 32px;    /* was 30px */
+    --row-height: 52px;       /* was 48px */
 
     /* Spacing */
-    --column-gap: 20px;
-    --section-gap: 30px;
+    --column-gap: 22px;       /* was 20px */
+    --section-gap: 34px;      /* was 30px */
 
     /* Column widths */
-    --col-symbol: 420px;
-    --col-price: 175px;
-    --col-chg: 175px;
-    --col-pct: 140px;
-    --col-hi: 200px;
-    --col-lo: 200px;
+    --col-symbol: 450px;      /* was 420px */
+    --col-price: 185px;       /* was 175px */
+    --col-chg: 185px;         /* was 175px */
+    --col-pct: 150px;         /* was 140px */
+    --col-hi: 215px;          /* was 200px */
+    --col-lo: 215px;          /* was 200px */
   }
 }
