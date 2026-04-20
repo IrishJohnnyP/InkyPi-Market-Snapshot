@@ -1,6 +1,30 @@
 /* =========================================================
+   CSS VARIABLES — BASELINE (800 × 480)
+   Target: Pimoroni Spectra 6 — 7.3"
+   ========================================================= */
+
+:root {
+  /* Typography */
+  --title-size: 32px;
+  --subtitle-size: 15px;
+  --row-font-size: 18px;
+  --row-height: 28px;
+
+  /* Grid spacing */
+  --column-gap: 10px;
+  --section-gap: 14px;
+
+  /* Column widths */
+  --col-symbol: 220px;
+  --col-price: 90px;
+  --col-chg: 90px;
+  --col-pct: 80px;
+  --col-hi: 100px;
+  --col-lo: 100px;
+}
+
+/* =========================================================
    GLOBAL
-   Target: Pimoroni Inky Color Spectra 6 (800 x 480)
    ========================================================= */
 
 .market-view,
@@ -22,63 +46,51 @@
 }
 
 .title-text {
-  font-size: 32px;
+  font-size: var(--title-size);
   font-weight: 700;
 }
 
 .updated-text {
-  font-size: 15px;
+  font-size: var(--subtitle-size);
   font-weight: 600;
 }
 
 /* =========================================================
-   GRID TABLE LAYOUT
-   Optimized for 800px width
+   GRID TABLE
    ========================================================= */
 
 .section-header,
 .row {
   display: grid;
-
-  /* Column widths tuned for Spectra 6 */
   grid-template-columns:
-    220px  /* SYMBOL */
-    90px   /* PRICE */
-    90px   /* CHG */
-    80px   /* % CHG */
-    100px  /* 52W HI */
-    100px; /* 52W LO */
-
-  column-gap: 10px;
+    var(--col-symbol)
+    var(--col-price)
+    var(--col-chg)
+    var(--col-pct)
+    var(--col-hi)
+    var(--col-lo);
+  column-gap: var(--column-gap);
   align-items: center;
   width: 100%;
 }
-
-/* =========================================================
-   SECTION HEADERS
-   ========================================================= */
 
 .section-header {
   margin-top: 6px;
   padding: 6px 0;
   border-top: 3px solid #000;
   border-bottom: 3px solid #000;
-  font-size: 18px;
+  font-size: var(--row-font-size);
   font-weight: 700;
   letter-spacing: 0.05em;
 }
 
 .section-spacer {
-  margin-bottom: 14px;
+  margin-bottom: var(--section-gap);
 }
 
-/* =========================================================
-   ROWS
-   ========================================================= */
-
 .row {
-  height: 28px;
-  font-size: 18px;
+  height: var(--row-height);
+  font-size: var(--row-font-size);
   border-bottom: 1px solid #000;
 }
 
@@ -90,32 +102,51 @@
    CELL STYLES
    ========================================================= */
 
-/* SYMBOL — ellipsis-safe */
 .symbol {
   font-weight: 700;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-
-  /* Critical for ellipsis in CSS Grid */
-  min-width: 0;
+  min-width: 0; /* REQUIRED for grid ellipsis */
 }
 
-/* Right-aligned numeric columns */
 .col-right {
   text-align: right;
   white-space: nowrap;
 }
 
 /* =========================================================
-   COLOR SEMANTICS
-   Inky-safe color palette
+   COLORS (INKY-SAFE)
    ========================================================= */
 
 .up {
-  color: #007a33; /* dark green */
+  color: #007a33;
 }
 
 .down {
-  color: #c00000; /* dark red */
+  color: #c00000;
+}
+
+/* =========================================================
+   LARGE DISPLAY OVERRIDES
+   Target: Pimoroni Spectra 6 — 13.3" (1600 × 1200)
+   ========================================================= */
+
+@media (min-width: 1400px) and (min-height: 1000px) {
+  :root {
+    --title-size: 56px;
+    --subtitle-size: 24px;
+    --row-font-size: 28px;
+    --row-height: 44px;
+
+    --column-gap: 18px;
+    --section-gap: 26px;
+
+    --col-symbol: 380px;
+    --col-price: 160px;
+    --col-chg: 160px;
+    --col-pct: 130px;
+    --col-hi: 180px;
+    --col-lo: 180px;
+  }
 }
