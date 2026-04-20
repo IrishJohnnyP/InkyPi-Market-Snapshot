@@ -135,10 +135,10 @@
 @media (min-width: 1400px) and (min-height: 1000px) {
   :root {
     /* Typography – final polish */
-    --title-size: 64px;       /* was 60px */
-    --subtitle-size: 28px;    /* was 26px */
-    --row-font-size: 32px;    /* was 30px */
-    --row-height: 52px;       /* was 48px */
+    --title-size: 68px;       /* was 64px */
+    --subtitle-size: 30px;    /* was 28px */
+    --row-font-size: 34px;    /* was 32px */
+    --row-height: 56px;       /* was 52px */
 
     /* Spacing */
     --column-gap: 22px;       /* was 20px */
