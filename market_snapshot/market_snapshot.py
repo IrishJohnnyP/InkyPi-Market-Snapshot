@@ -14,7 +14,7 @@ class MarketSnapshot(BasePlugin):
 
     def _fetch_market_data(self, symbols):
         url = (
-            "https://yahoo-finance-proxy.pietrowicz.workers.dev/"
+            "https://finance.butternut.cloud/"
             f"?symbols={symbols}"
         )
         session = get_http_session()
