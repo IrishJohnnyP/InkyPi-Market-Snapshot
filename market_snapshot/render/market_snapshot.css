@@ -1,5 +1,5 @@
 /* Import Roboto Font */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family='Atkinson Hyperlegible Next':wght@400;600;700;900&display=swap');
 
 /* =========================================================
    CSS VARIABLES — BASELINE (800 × 480)
@@ -32,7 +32,7 @@
 
 .market-view,
 .market-view * {
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: 'Atkinson Hyperlegible Next', Arial, sans-serif;
   color: #000;
   box-sizing: border-box;
   text-rendering: optimizeLegibility;
