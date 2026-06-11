@@ -35,7 +35,7 @@
   font-family: 'Atkinson Hyperlegible Next', Arial, sans-serif;
   color: #000;
   box-sizing: border-box;
-  text-rendering: optimizeSpeed; 
+  text-rendering: auto; 
   -webkit-font-smoothing: none !important; 
   font-smoothing: none !important;
   font-variant-ligatures: none;
