@@ -6,9 +6,16 @@
 
   <div class="market-header">
     <span class="title-text">Market Snapshot</span>
-    {% if market.last_updated %}
-      <span class="updated-text">Updated: {{ market.last_updated }}</span>
-    {% endif %}
+    
+    <div class="header-right">
+      {% if market.last_updated %}
+        <span class="updated-text">Updated: {{ market.last_updated }}</span>
+      {% endif %}
+      
+      <div class="market-status {% if market.market_open %}status-open{% else %}status-closed{% endif %}">
+        {% if market.market_open %}MARKET OPEN{% else %}MARKET CLOSED{% endif %}
+      </div>
+    </div>
   </div>
 
   {% macro section(title, items) %}
