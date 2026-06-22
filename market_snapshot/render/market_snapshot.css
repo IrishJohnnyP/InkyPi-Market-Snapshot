@@ -61,7 +61,7 @@
 .market-status {
   font-size: var(--subtitle-size);
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.00em;
 }
 
 .status-open {
