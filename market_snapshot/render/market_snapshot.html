@@ -12,8 +12,9 @@
         <span class="updated-text">Updated: {{ market.last_updated }}</span>
       {% endif %}
       
+      {# ✅ REVISED: Simple text instead of pill #}
       <div class="market-status {% if market.market_open %}status-open{% else %}status-closed{% endif %}">
-        {% if market.market_open %}MARKET OPEN{% else %}MARKET CLOSED{% endif %}
+        {% if market.market_open %}Market Open{% else %}Market Closed{% endif %}
       </div>
     </div>
   </div>
