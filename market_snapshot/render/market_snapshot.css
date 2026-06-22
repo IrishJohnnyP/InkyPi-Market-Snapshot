@@ -1,46 +1,3 @@
-/* Import Roboto Font */
-@import url('https://fonts.googleapis.com/css2?family='Atkinson Hyperlegible Next':wght@400;600;700;900&display=swap');
-
-/* =========================================================
-   CSS VARIABLES — BASELINE (800 × 480)
-   Target: Pimoroni Spectra 6 — 7.3"
-   ========================================================= */
-
-:root {
-  /* Typography */
-  --title-size: 32px;
-  --subtitle-size: 15px;
-  --row-font-size: 18px;
-  --row-height: 28px;
-
-  /* Grid spacing */
-  --column-gap: 10px;
-  --section-gap: 14px;
-
-  /* Column widths */
-  --col-symbol: 220px;
-  --col-price: 90px;
-  --col-chg: 90px;
-  --col-pct: 80px;
-  --col-hi: 100px;
-  --col-lo: 100px;
-}
-
-/* =========================================================
-   GLOBAL
-   ========================================================= */
-
-.market-view,
-.market-view * {
-  font-family: 'Atkinson Hyperlegible Next', Arial, sans-serif;
-  color: #000;
-  box-sizing: border-box;
-  text-rendering: auto; 
-  -webkit-font-smoothing: none !important; 
-  font-smoothing: none !important;
-  font-variant-ligatures: none;
-}
-
 /* =========================================================
    HEADER
    ========================================================= */
@@ -48,7 +5,7 @@
 .market-header {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: flex-end; /* Align bottom to keep title and right-column anchored */
   margin-bottom: 12px;
 }
 
@@ -57,106 +14,33 @@
   font-weight: 700;
 }
 
+/* Container to stack the time and indicator on the right */
+.header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px; 
+}
+
 .updated-text {
   font-size: var(--subtitle-size);
   font-weight: 600;
 }
 
-/* =========================================================
-   GRID TABLE
-   ========================================================= */
-
-.section-header,
-.row {
-  display: grid;
-  grid-template-columns:
-    var(--col-symbol)
-    var(--col-price)
-    var(--col-chg)
-    var(--col-pct)
-    var(--col-hi)
-    var(--col-lo);
-  column-gap: var(--column-gap);
-  align-items: center;
-  width: 100%;
-}
-
-.section-header {
-  margin-top: 6px;
-  padding: 6px 0;
-  border-top: 3px solid #000;
-  border-bottom: 3px solid #000;
-  font-size: var(--row-font-size);
+/* Market Status Pill */
+.market-status {
+  font-size: calc(var(--subtitle-size) * 0.9); /* Slightly smaller than the timestamp */
   font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+  color: #fff !important; /* Force white text */
   letter-spacing: 0.05em;
 }
 
-.section-spacer {
-  margin-bottom: var(--section-gap);
+.status-open {
+  background-color: #007a33; /* Matches your .up color */
 }
 
-.row {
-  height: var(--row-height);
-  font-size: var(--row-font-size);
-  border-bottom: 1px solid #000;
-}
-
-.no-border {
-  border-bottom: 0;
-}
-
-/* =========================================================
-   CELL STYLES
-   ========================================================= */
-
-.symbol {
-  font-weight: 700;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-width: 0; /* REQUIRED for grid ellipsis */
-}
-
-.col-right {
-  text-align: right;
-  white-space: nowrap;
-}
-
-/* =========================================================
-   COLORS (INKY-SAFE)
-   ========================================================= */
-
-.up {
-  color: #007a33;
-}
-
-.down {
-  color: #c00000;
-}
-
-/* =========================================================
-   LARGE DISPLAY OVERRIDES
-   Target: Pimoroni Spectra 6 — 13.3" (1600 × 1200)
-   ========================================================= */
-
-@media (min-width: 1400px) and (min-height: 1000px) {
-  :root {
-    /* Typography – final polish */
-    --title-size: 76px;       /* was 72px */
-    --subtitle-size: 30px;    /* was 30px */
-    --row-font-size: 42px;    /* was 38px */
-    --row-height: 56px;       /* was 52px */
-
-    /* Spacing */
-    --column-gap: 22px;       /* was 20px */
-    --section-gap: 34px;      /* was 30px */
-
-    /* Column widths */
-    --col-symbol: 450px;      /* was 420px */
-    --col-price: 185px;       /* was 175px */
-    --col-chg: 185px;         /* was 175px */
-    --col-pct: 150px;         /* was 140px */
-    --col-hi: 215px;          /* was 200px */
-    --col-lo: 215px;          /* was 200px */
-  }
+.status-closed {
+  background-color: #c00000; /* Matches your .down color */
 }
